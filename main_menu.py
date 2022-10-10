@@ -19,7 +19,7 @@ less_dinners = [
     "beef and tomato",
     "pork and tofu",
     "lasagnia",
-    "bulgogi",
+    "bulgolgi",
     "pork and cuccumber",
 ]
 
@@ -28,7 +28,7 @@ Christine_dinners = [
     "hamburger",
     "steak",
     "bulgogi",
-    "sAlmon",
+    "salmon",
     "carb balance burrito",
 ]
 
@@ -65,7 +65,7 @@ for i, selection in enumerate(all_picks):
         linkage[item].append(names[i])
 
 # print(f"linkage dict = {linkage}")
-print(f"total duplication")
+# print(f"total duplication")
 
 
 def get_shared_items(linkage):
@@ -87,7 +87,7 @@ def one_day_picks(names, linkage, *args):
         # remove from linkage as we are using it
         key, value = shared_items[0]
         del linkage[key]
-        print(f"selected dupe item {key} by {value}")
+        print(f"\n selected dupe item {key} by {value}\n")
         # we need to remove from random selection as well
         for index, person in enumerate(value):
             index_picks = names_to_index[person]
@@ -104,14 +104,14 @@ def one_day_picks(names, linkage, *args):
         if not todays_menu[person]:
             # if we did not get a menu item from the dupes, select a new item
             menu_item = random.sample(args[index], k=1)[0]
-            print(f"menu item = {menu_item} for list {index} =  {args[index]}")
+            # print(f"menu item = {menu_item} for list {index} =  {args[index]}")
             curr = args[index]
             curr.remove(menu_item)
-            print(f"curr list = {curr}")
+            # print(f"curr list = {curr}")
             todays_menu[person] = menu_item
 
     # print todays menu:
-    print(f" Today's menu = {todays_menu}")
+    print(f"Today's menu = {todays_menu}")
 
 
 for i in range(2):
