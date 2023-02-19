@@ -1,4 +1,5 @@
 import random
+import yagmail
 from collections import defaultdict
 
 Alexa_dinners = [
@@ -111,8 +112,20 @@ def one_day_picks(names, linkage, *args):
             todays_menu[person] = menu_item
 
     # print todays menu:
-    print(f"Today's menu = {todays_menu}")
+    menu_string = f"Today's menu = {todays_menu}"
+    print(menu_string)
+    return menu_string
 
-
-for i in range(2):
-    one_day_picks(names, linkage, picks_less, picks_Christine, picks_Alexa)
+all_menus = ""
+for i in range(1,3):
+    day_count=str(i)
+    all_menus+=day_count + "_"+one_day_picks(names, linkage, picks_less, picks_Christine, picks_Alexa)
+print(f"test all menus {all_menus}")
+#mommys_email="Christine@etrillium.com"
+yagmail.register("mommysmenus@gmail.com", "funbabygame23")
+receiver="Lessw@etrillium.com"
+body=all_menus
+yag=yagmail.SMTP("mommysmenus@Gmail.com")
+yag.send(to = receiver,
+         subject="Todays menus",
+         contents=body)
